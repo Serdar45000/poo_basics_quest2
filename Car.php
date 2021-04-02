@@ -1,85 +1,36 @@
 <?php
 
+require_once 'Vehicle.php';
 
-  // Bicycle.php
-
-
-  class Car
-
+class Car extends Vehicle
+{
+  public function __construct(string $color, int $nbSeats, string $energy)
   {
-    private int $nbWheels;
-    private int $currentSpeed;
-    private string $color;
-    private int $nbSeats;
-    private string $energy;
-    private int $energyLevel;
-
-    public function __construct(string $color ="blue", int $nbSeats = 5, string $energy = "gasoline")
+      parent::__construct($color, $nbSeats);
+      $this->energy = $energy;
+  }
+    public function getEnergy(): string
     {
-    $this->color = $color;
-    $this->nBseats = $nbSeats;
-    $this->energy = $energy;
+        return $this->energy;
     }
 
-
-    public function forward(): string
+    public function setEnergy(string $energy): Car
     {
-      $this->currentSpeed = 15;
-      return "Go !";
+         if (in_array($energy, self::ALLOWED_ENERGIES)) {
+           $this->energy = $energy;
+        }
+        return $this;
     }
 
-
-    public function brake(): string
+    public function getEnergyLevel(): int
     {
-      $sentence = "";
-      while ($this->currentSpeed > 0) {
-          $this->currentSpeed--;
-          $sentence .= "Brake !!!";
-      }
-
-      $sentence .= "I'm stopped !";
-      return $sentence;
-    }
-    
-
-    public function setColor(string $color): boid
-    {
-        $this->color = $color;
+        return $this->energyLevel;
     }
 
-    public function getColor(): string
+    public function setEnergyLevel(int $energyLevel): void
     {
-        return $this->color;
-    }
-
-    public function getCurrentSpeed(): int
-    {
-        return $this->currentSpeed;
-    }
-
-    public function setCurrentSpeed(int $currentSpeed): void
-    {
-      if($currentSpeed >= 0) {
-        $this->currentSpeed = $currentSpeed;
-      }
-    }
-
-
-    public function getNbSeats(string $nbSeats): void
-    {
-        $this->nbSeats = $nbSeats;
-    }
-
- 
-    public function getNbWheels(string $nbWheels): void
-    {
-        $this->nbWheels = $nbWheels;
-    }
-
-
-    public function dump()
-    {
-    var_dump($this);
+        $this->energyLevel = $energyLevel;
     }
 
 }
+

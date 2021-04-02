@@ -2,12 +2,11 @@
 
 require_once 'Bicycle.php';
 require_once 'Car.php';
+require_once 'Truck.php';
 
-$bike = new Bicycle();
-/*var_dump($bike);*/
+$bike = new Bicycle('blue', 1);
 $bike->setColor = 'blue';
 $bike->setCurrentSpeed = 0;
-/*var_dump($bike); // then, another dump.*/
 
 // Moving bike
 echo $bike->forward();
@@ -17,12 +16,12 @@ echo '<br> Vitesse du vélo : ' . $bike->setCurrentSpeed . ' km/h' . '<br>';
 echo $bike->brake();
 
 // Instanciation d'un nouvel objet $rockrider
-$rockrider = new Bicycle();
+$rockrider = new Bicycle('blue', 1);
 $rockrider->setColor = 'yellow';
 $rockrider->setCurrentSpeed = 30;
 
 // Instanciation d'un nouvel objet $tornado
-$tornado = new Bicycle();
+$tornado = new Bicycle('blue', 1);
 $tornado->setColor = 'black';
 $tornado->setCurrentSpeed = 50;
 
@@ -35,13 +34,12 @@ echo '<br> Vitesse du vélo de couleur  ' . $tornado->setColor .' : ' . $tornado
 echo $tornado->brake();
 
 // CAR
-$car = new Car();
+$car = new Car('', 5, 'fuel');
 $car->setColor= "white";
 $car->setCurrentSpeed = 90;
 
 
-$k2000 = new Car();
-$k2000->setColor= "black";
+$k2000 = new Car('', 2, 'electric');
 $k2000->setCurrentSpeed = 300;
 
 echo $car->forward();
@@ -50,8 +48,34 @@ echo $car->brake();
 echo '<br><br><br>';
 
 echo $k2000->forward();
-echo '<br> Vitesse de la voiture de k2000 : ' . $k2000->setCurrentSpeed . ' km/h' . '<br>';
+echo '<br> Vitesse de k2000 : ' . $k2000->setCurrentSpeed . ' km/h' . '<br>';
 echo $car->forward();
 echo $car->forward();
 echo $car->forward();
 echo $car->forward();
+
+//TRUCK
+$truck = new Truck(100, 'white', 4, 'fuel');
+$truck->setCurrentSpeed = 50;
+$truck->setColor= "white";
+
+echo '<br><br><br>';
+echo $truck->forward() . ' my beautiful ' . $truck->setColor . ' truck !!<br>';
+
+
+while ($truck->getMaxCapacity() > $truck->getLoadTruck()){
+    echo '<br>-> for load : ' ;
+    $truck->fill($truck);
+    echo $truck->getLoadTruck() . ' kg <br>';
+    echo $truck->forward();
+    echo $truck->brake();
+
+}
+
+$truck->filled();
+echo  '<br> I\'m stuffed !!!!';
+/*
+$truck->setLoadTruck = 50;
+echo $truck->setLoadTruck . 'kilos.';*/
+
+
