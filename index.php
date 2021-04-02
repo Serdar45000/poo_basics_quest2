@@ -64,9 +64,8 @@ echo $truck->forward() . ' my beautiful ' . $truck->setColor . ' truck !!<br>';
 
 
 while ($truck->getMaxCapacity() > $truck->getLoadTruck()){
-    echo '<br>-> for load : ' ;
     $truck->fill($truck);
-    echo $truck->getLoadTruck() . ' kg <br>';
+    echo $truck->getLoadTruck() . ' kg already loaded ! <br>';
     echo $truck->forward();
     echo $truck->brake();
 
